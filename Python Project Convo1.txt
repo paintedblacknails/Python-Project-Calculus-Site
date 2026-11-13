@@ -1,0 +1,84 @@
+
+One last time, check the following:
+
+At least 7 routes.
+
+At least 5 pages.
+
+The implementation of the *State *dataclass must have at least 4 fields.
+
+At least one field must be a list of class instances or a dictionary of class instances.
+
+This means that there must be a second dataclass.
+
+At least 4 state fields, including the list or dictionary of class instances, must each be meaningfully modified in at least one route; those 4 state fields cannot be constants.
+
+At least 3 input fields (TextBox, CheckBox, SelectBox, TextArea). They don't have to be the same type.
+
+At least 3 meaningful if statements.
+
+At least 1 loop that iterates over an attribute of the list of class
+instances or dictionary of class instances in a meaningful way.
+
+The site should have a legitimate purpose or functionality.
+
+No global variables (global constantsLinks to an external site. are fine).
+
+You must use the Drafter library.
+
+Any advanced coding techniques (i.e. that weren't covered in this course) used are thoroughly documented in the code.
+
+More creative and impressive designs are given flexibility on the
+above requirements - impress us! However, impressive websites tend to do
+more than the above requirements. Further, if you miss more than 2 requirements, you will get no credit for that submission.
+For example, missing a second dataclass means you would be missing not
+only that requirement, but also the list or dictionary of such dataclass
+instances, and the loop iterating over that list. This would mean that
+the submission would get a zero.
+
+Code Requirements
+Make sure your program and website runs; broken programs do not earn points.
+This means that if your program contains a syntax error or runs and
+doesn't deploy a website, you get zero points for this assignment, and
+are subject to any other penalties listed in the syllabus.
+
+Once you are finished with your project code, check over the following:
+
+Chosen good variable names (check last two sections of Chapter 1B1Links to an external site.)
+
+Unit tested your functions where possible, being valid and thoroughLinks to an external site.:
+each route must have at least one unit test, if possible (routes that
+have randomization are difficult to unit test, so they are not required
+to).
+
+If a function can't be unit tested, you must note as much in a docstring or comment.
+
+Broke up excessively long lines (80 characters is a good rule of thumb, but we'll be strict about not exceeding 120 characters)
+
+Included types in your function headers
+
+Included good docstrings Links to an external site.as the first line of your function's body
+
+Decomposed complicated functions with helper functions
+
+1:45 PM
+I’ll recheck the current source and tests against the rubric, including route coverage, annotations, and the release startup configuration.
+
+The static audit confirms the core rubric counts. I found two small checklist gaps—a direct test for the index handler and one CSS line over 120 characters—and I’m doing a final startup check before summarizing.
+
+$response = Invoke-WebRequest -Uri 'http://localhost:8000/' -UseBasicParsing; $title = [regex]::Match($response.Content, '<title>(.*?)</title>').Groups[1].Value; Write-Output "status=$($response.StatusCode) title=$title release_css=$($response.Content.Contains('drafter_deploy.css'))"
+Rubric check
+The core requirements are met in calculus_site.py:
+
+13 routes and 8 distinct page types.
+State has 6 fields, including history, a list of CalculationRecord instances; both dataclasses are present.
+The history list and five other state fields are meaningfully updated.
+Multiple TextBox fields and a SelectBox provide more than three inputs.
+21 meaningful if statements; the history route loops over its records.
+The app has a legitimate calculus purpose, uses Drafter, and its module-level values are constants.
+Python functions have type annotations and docstrings. The AST evaluator, numerical methods, and MathJax preview are described in the code.
+Minor checklist gaps
+There are tests for 12 of 13 route handlers. The index route is tested for registration, but isn’t called directly; a direct test is possible. Tests are in test_calculus_site.py.
+One CSS line exceeds 120 characters.
+If “thoroughly documented” is interpreted strictly, the JavaScript MathJax conversion could use more explanation.
+The test suite passes: 21 tests. The release-configured server also started and logged a successful GET /.
